@@ -5,6 +5,7 @@ from .bounds import OrientedBox2D, minimum_sampled_box_2d, oriented_box_2d
 from .directions import directions_circle, directions_sphere
 from .envelope import SupportPlane, sampled_support_envelope, support_envelope_2d, support_envelope_3d
 from .support import directional_extrema, support_point, support_value
+from .collision import moving_bounds_may_collide, obb_overlap_3d
 from .travel import OrientedBox3D, TravelFrame3D, directional_collision_box_2d, directional_collision_box_3d, swept_travel_box, travel_frame, travel_oriented_box
 
 __all__ = [
@@ -13,6 +14,6 @@ __all__ = [
     "directional_extrema", "directions_circle", "directions_sphere",
     "minimum_sampled_box_2d", "oriented_box_2d", "rotation_between",
     "sampled_support_envelope", "support_envelope_2d", "support_envelope_3d",
-    "support_point", "support_value",
+    "support_point", "support_value", "moving_bounds_may_collide", "obb_overlap_3d",
     "OrientedBox3D", "TravelFrame3D", "directional_collision_box_2d", "directional_collision_box_3d", "swept_travel_box", "travel_frame", "travel_oriented_box",
 ]
