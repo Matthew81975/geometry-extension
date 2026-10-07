@@ -54,3 +54,26 @@ def swept_travel_box(points,velocity,dt,acceleration=(0.0,0.0,0.0),up_hint=(0.0,
     displacement=tuple(v[i]*dt+0.5*a[i]*dt*dt for i in range(3))
     moved=[tuple(p[i]+displacement[i] for i in range(3)) for p in pts]
     return travel_oriented_box(pts+moved,velocity,up_hint)
+
+
+def directional_collision_box_2d(points,direction):
+    """Collision box from extrema along D and its 2D orthogonal D_perp."""
+    pts=[tuple(map(float,p)) for p in points]
+    if not pts: raise ValueError("points must not be empty")
+    if any(len(p)!=2 for p in pts): raise ValueError("2D points required")
+    d=_unit((direction[0],direction[1],0.0))[:2]
+    q=(-d[1],d[0])
+    pd=[_dot(p,d) for p in pts]; pq=[_dot(p,q) for p in pts]
+    lo_d,hi_d=min(pd),max(pd); lo_q,hi_q=min(pq),max(pq)
+    md,mq=(lo_d+hi_d)/2,(lo_q+hi_q)/2
+    center=(md*d[0]+mq*q[0],md*d[1]+mq*q[1])
+    return {
+        "center":center,
+        "axes":(d,q),
+        "half_extents":((hi_d-lo_d)/2,(hi_q-lo_q)/2),
+        "extrema":((lo_d,hi_d),(lo_q,hi_q)),
+    }
+
+def directional_collision_box_3d(points,direction,up_hint=(0.0,0.0,1.0)):
+    """Collision box from six extrema: two along D and two along each basis vector of D_perp."""
+    return travel_oriented_box(points,direction,up_hint)
