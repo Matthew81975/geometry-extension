@@ -1,5 +1,6 @@
 """Reusable numerical geometry extensions."""
 
+from .bivector import face_bivector, face_area, face_normal
 from .alignment import align_vector_to_plane, align_vector_to_point, align_vector_to_vector, rotation_between
 from .bounds import OrientedBox2D, minimum_sampled_box_2d, oriented_box_2d
 from .directions import directions_circle, directions_sphere
@@ -9,7 +10,7 @@ from .collision import moving_bounds_may_collide, obb_overlap_3d
 from .travel import OrientedBox3D, TravelFrame3D, directional_collision_box_2d, directional_collision_box_3d, swept_travel_box, travel_frame, travel_oriented_box
 
 __all__ = [
-    "OrientedBox2D", "SupportPlane",
+    "OrientedBox2D", "SupportPlane", "face_bivector", "face_area", "face_normal",
     "align_vector_to_plane", "align_vector_to_point", "align_vector_to_vector",
     "directional_extrema", "directions_circle", "directions_sphere",
     "minimum_sampled_box_2d", "oriented_box_2d", "rotation_between",
